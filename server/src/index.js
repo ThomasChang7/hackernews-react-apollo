@@ -26,6 +26,8 @@ const server = new GraphQLServer({
   })
 });
 
+console.log(process.env.PORT);
+
 const options = {
   port: process.env.PORT || 3001
 };
