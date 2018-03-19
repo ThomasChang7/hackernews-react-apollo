@@ -1,24 +1,32 @@
 {
-  "name": "hackernews-react-apollo",
-  "version": "0.1.0",
-  "private": true,
   "dependencies": {
-    "apollo-client-preset": "^1.0.8",
-    "apollo-link-ws": "^1.0.7",
-    "graphql": "^0.13.1",
-    "graphql-tag": "^2.8.0",
-    "react": "^16.2.0",
-    "react-apollo": "^2.0.4",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
-    "subscriptions-transport-ws": "^0.9.6"
+    "concurrent": "^0.3.2",
+    "concurrently": "^3.5.1"
+  },
+  "name": "hackernews-react-apollo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "engines": {
+    "node": "9.7.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "build": "concurrently \"cd client && yarn build\" \"cd server && yarn build\"",
+    "install": "(cd client && yarn) && (cd server && yarn)",
+    "start": "concurrently \"cd client && PORT=3000 yarn start\" \"cd server && PORT=3001 yarn start\"",
+    "start:prod": "cd server && yarn start:prod",
+    "heroku-postbuild": "yarn build"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasChang7/hackernews-react-apollo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasChang7/hackernews-react-apollo/issues"
+  },
+  "homepage": "https://github.com/ThomasChang7/hackernews-react-apollo#readme",
+  "description": ""
 }
