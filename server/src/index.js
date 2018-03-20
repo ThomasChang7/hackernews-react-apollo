@@ -1,4 +1,5 @@
-const { GraphQLServer } = require('graphql-yoga');
+const GraphQLYoga = require('graphql-yoga');
+const { express, GraphQLServer } = GraphQLYoga;
 const { Prisma } = require('prisma-binding');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
@@ -25,6 +26,8 @@ const server = new GraphQLServer({
     })
   })
 });
+
+server.express.use(express.static(path.join(__dirname, '../../client/build')));
 
 console.log(process.env.PORT);
 
