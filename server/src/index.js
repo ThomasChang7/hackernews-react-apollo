@@ -31,7 +31,11 @@ const server = new GraphQLServer({
 
 const staticFiles = express.static(path.join(__dirname, '../../client/build'));
 
+console.log(path.join(__dirname, '../../client/build'));
+
 server.express.use(staticFiles);
+
+server.express.set('port', process.env.PORT || 3001);
 
 const options = {
   port: process.env.PORT || 3001
