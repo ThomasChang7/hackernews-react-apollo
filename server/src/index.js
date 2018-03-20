@@ -1,11 +1,12 @@
 const GraphQLYoga = require('graphql-yoga');
-const { express, GraphQLServer } = GraphQLYoga;
+const { GraphQLServer } = GraphQLYoga;
 const { Prisma } = require('prisma-binding');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 const Subscription = require('./resolvers/Subscription');
 const Feed = require('./resolvers/Feed');
 const path = require('path');
+const express = require('express');
 
 const resolvers = {
   Query,
@@ -27,6 +28,8 @@ const server = new GraphQLServer({
     })
   })
 });
+
+console.log(server.express.use(express.static(path.join(__dirname, '../../client/build'))));
 
 server.express.use(express.static(path.join(__dirname, '../../client/build')));
 
