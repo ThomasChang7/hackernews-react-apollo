@@ -12,9 +12,7 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-console.log(process.env.PORT);
-
-const httpLink = new HttpLink({ uri: `http://localhost:${process.env.PORT}` });
+const httpLink = new HttpLink({ uri: `http://whispering-crag-89957.herokuapp.com` });
 
 const middlewareAuthLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem(AUTH_TOKEN);
@@ -30,7 +28,7 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
 const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
-  uri: `ws://${process.env.PORT}`,
+  uri: 'ws://whispering-crag-89957.herokuapp.com',
   options: {
     reconnect: true,
     connectionParams: {
