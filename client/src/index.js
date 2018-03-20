@@ -28,7 +28,7 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
 const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://whispering-crag-89957.herokuapp.com',
+  uri: 'wss://whispering-crag-89957.herokuapp.com',
   options: {
     reconnect: true,
     connectionParams: {
