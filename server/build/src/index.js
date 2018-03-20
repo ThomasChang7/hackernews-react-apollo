@@ -6,16 +6,18 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _require = require('graphql-yoga'),
-    GraphQLServer = _require.GraphQLServer;
+var GraphQLYoga = require('graphql-yoga');
+var express = require('express');
+var GraphQLServer = GraphQLYoga.GraphQLServer;
 
-var _require2 = require('prisma-binding'),
-    Prisma = _require2.Prisma;
+var _require = require('prisma-binding'),
+    Prisma = _require.Prisma;
 
 var Query = require('./resolvers/Query');
 var Mutation = require('./resolvers/Mutation');
 var Subscription = require('./resolvers/Subscription');
 var Feed = require('./resolvers/Feed');
+var path = require('path');
 
 var resolvers = {
   Query: Query,
@@ -38,6 +40,10 @@ var server = new GraphQLServer({
     });
   }
 });
+
+console.log(server.express.use(express.static(path.join(__dirname, '../../client/build'))));
+
+server.express.use(express.static(path.join(__dirname, '../../client/build')));
 
 console.log(process.env.PORT);
 
