@@ -41,11 +41,13 @@ var server = new GraphQLServer({
   }
 });
 
-console.log(server.express.use(express.static(path.join(__dirname, '../../client/build'))));
+var staticFiles = express.static(path.join(__dirname, '../../client/build'));
 
-server.express.use(express.static(path.join(__dirname, '../../client/build')));
+console.log(path.join(__dirname, '../../client/build'));
 
-console.log(process.env.PORT);
+server.express.use(staticFiles);
+
+server.express.set('port', process.env.PORT || 3001);
 
 var options = {
   port: process.env.PORT || 3001
