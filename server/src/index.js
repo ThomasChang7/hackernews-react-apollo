@@ -34,4 +34,4 @@ const staticFiles = express.static(path.join(__dirname, '../../client/build'));
 server.use(staticFiles);
 server.use('/*', staticFiles);
 
-server.start(() => console.log('Server is running on http://localhost:4000'));
+server.start(() => console.log('Server is running on '));
