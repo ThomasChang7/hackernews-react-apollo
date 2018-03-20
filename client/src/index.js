@@ -12,6 +12,8 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+console.log(process.env.PORT);
+
 const httpLink = new HttpLink({ uri: `http://localhost:${process.env.PORT}` });
 
 const middlewareAuthLink = new ApolloLink((operation, forward) => {
