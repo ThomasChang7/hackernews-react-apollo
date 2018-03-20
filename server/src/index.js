@@ -1,12 +1,9 @@
-const GraphQLYoga = require('graphql-yoga');
-const express = require('express');
-const { GraphQLServer } = GraphQLYoga;
+const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 const Subscription = require('./resolvers/Subscription');
 const Feed = require('./resolvers/Feed');
-const path = require('path');
 
 const resolvers = {
   Query,
@@ -29,16 +26,6 @@ const server = new GraphQLServer({
   })
 });
 
-const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+console.log(process.env.PORT);
 
-console.log(path.join(__dirname, '../../client/build'));
-
-server.express.use(staticFiles);
-
-server.express.set('port', process.env.PORT || 3001);
-
-const options = {
-  port: process.env.PORT || 3001
-};
-
-server.start(options, ({ port }) => console.log(`Server started, listening on port ${port} for incoming requests.`));
+server.start(() => console.log('Server is running on http://localhost:4000'));
